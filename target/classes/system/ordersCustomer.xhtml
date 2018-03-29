@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<ui:composition template="/template/layoutBase.xhtml">
+
+	<ui:define name="content">
+
+		<h:form style="margin:auto;margin-left:2%;" id="form-consulta">
+
+			<p:dataTable id="dataTable-registros" var="orders"
+				value="#{consultOrderController.getOrdersCustomer(param['codigo'])}"
+				rows="10" paginator="true"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15" style="width:98%;">
+
+				<p:column headerText="Order Number">
+					<h:outputText value="#{orders.orderNumber}" />
+				</p:column>
+
+				<p:column headerText="Order Date">
+					<h:outputText value="#{orders.orderDate}" >
+					   <f:convertDateTime pattern="yyyy-MM-dd" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Required Date">
+					<h:outputText value="#{orders.requiredDate}">
+					 	<f:convertDateTime pattern="yyyy-MM-dd" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Shipped Date">
+					<h:outputText value="#{orders.shippedDate}" >
+					 	<f:convertDateTime pattern="yyyy-MM-dd" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Status">
+					<h:outputText value="#{orders.status}" />
+				</p:column>
+
+				<p:column headerText="" >
+					<a href="/MyTask/system/ordersDetail.xhtml?orderNumber=#{orders.orderNumber}">Order Detail</a>					 
+				</p:column>
+
+			</p:dataTable>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+</html>

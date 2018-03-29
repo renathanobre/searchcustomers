@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<ui:composition template="/template/layoutBase.xhtml">
+
+	<ui:define name="content">
+
+
+		<br></br>
+
+		<h:form style="margin:auto;margin-left:2%;" id="form-result">
+
+			<p:dataTable id="dataTable-registros" var="customer"
+				value="#{consultCustomerController.customers}" rows="10"
+				paginator="true"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15" style="width:98%;"
+				filteredValue="#{consultCustomerController.filteredCustomers}"
+				widgetVar="customerTable">
+				<f:facet name="header">
+					<p:outputPanel>
+						<h:outputText value="Search Customer:" />
+						<p:inputText id="globalFilter"
+							onkeyup="PF('customerTable').filter()" style="width:150px"
+							placeholder="Enter keyword" />
+					</p:outputPanel>
+				</f:facet>
+
+				<p:column headerText="Código" filterBy="#{customer.codigo}"
+					filterMatchMode="contains">
+					<h:outputText value="#{customer.codigo}" />
+				</p:column>
+
+				<p:column headerText="First Name"
+					filterBy="#{customer.contactFirstName}" filterMatchMode="contains">
+					<h:outputText value="#{customer.contactFirstName}" />
+				</p:column>
+
+				<p:column headerText="Last Name"
+					filterBy="#{customer.contactLastName}" filterMatchMode="contains">
+					<h:outputText value="#{customer.contactLastName}" />
+				</p:column>
+
+				<p:column headerText="Phone" filterBy="#{customer.phone}"
+					filterMatchMode="contains">
+					<h:outputText value="#{customer.phone}" />
+				</p:column>
+
+				<p:column headerText="Address" style="width:200px;"
+					filterBy="#{customer.addressLine1}" filterMatchMode="contains">
+					<h:outputText value="#{customer.addressLine1}" />
+				</p:column>
+
+				<p:column headerText="City" style="width:200px;"
+					filterBy="#{customer.city}" filterMatchMode="contains">
+					<h:outputText value="#{customer.city}" />
+				</p:column>
+
+				<p:column headerText="State" filterBy="#{customer.state}"
+					filterMatchMode="contains">
+					<h:outputText value="#{customer.state}" />
+				</p:column>
+
+				<p:column headerText="Country" filterBy="#{customer.country}"
+					filterMatchMode="contains">
+					<h:outputText value="#{customer.country}" />
+				</p:column>
+
+				<p:column headerText="Postal Code" filterBy="#{customer.postalCode}"
+					filterMatchMode="contains">
+					<h:outputText value="#{customer.postalCode}" />
+				</p:column>
+
+				<p:column headerText="Credit Limit"
+					filterBy="#{customer.creditLimit}" filterMatchMode="contains">
+					<h:outputText value="#{customer.creditLimit}" >
+						<f:convertNumber type="currency" currencySymbol="$" />
+					</h:outputText>
+				</p:column>>
+
+				<p:column headerText="" style="width:50px;">
+					<p:commandButton value="Order"
+						action="#{consultOrderController.showOrdersCustomer(customer.codigo)}"
+						ajax="false">
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+</html>

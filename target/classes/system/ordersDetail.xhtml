@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<ui:composition template="/template/layoutBase.xhtml">
+
+	<ui:define name="content">
+
+		<h:form style="margin:auto;margin-left:2%;" id="form-orderdetail">
+
+			<p:dataTable id="dataTable-registros" var="ordersDetail"
+				value="#{orderDetailsController.getOrdersDetailProducts(param['orderNumber'])}"
+				rows="4" paginator="true"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15" style="width:98%;">
+
+				<p:column headerText="Order Number">
+					<h:outputText value="#{ordersDetail.orderNumber}" />
+				</p:column>
+
+				<p:column headerText="Order Line Number">
+					<h:outputText value="#{ordersDetail.orderLineNumber}" />
+				</p:column>
+
+				<p:column headerText="Price Each">
+					<h:outputText value="#{ordersDetail.priceEach}" />
+				</p:column>
+
+				<p:column headerText="Quantity Ordered">
+					<h:outputText value="#{ordersDetail.quantityOrdered}" />
+				</p:column>
+
+				<p:column headerText="Product Name">
+					<h:outputText value="#{ordersDetail.product.productName}" />
+				</p:column>
+
+				<p:column headerText="Product Description">
+					<h:outputText value="#{ordersDetail.product.productDescription}" />
+				</p:column>
+
+				<p:column headerText="Product Vendor">
+					<h:outputText value="#{ordersDetail.product.productVendor}" />
+				</p:column>
+
+			</p:dataTable>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+</html>

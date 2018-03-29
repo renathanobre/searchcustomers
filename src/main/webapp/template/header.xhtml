@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+ 
+	<h:form>
+ 
+		<p:menubar>
+			<p:menuitem value="Data Discovery" icon="ui-icon-home" url="searchCustomer.xhtml" />
+ 
+		<f:facet name="options">            
+            	        <p:commandButton value="Logout" icon="ui-icon-extlink" action="#{userController.logout()}"/>
+        	</f:facet>
+		</p:menubar>
+ 
+	</h:form>
+ 
+</html>
